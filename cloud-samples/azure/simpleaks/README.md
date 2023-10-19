@@ -12,7 +12,7 @@ az account set --subscription "<subscription_id>"
 
 ```
 
-## Runnin gterraform
+## Running terraform
 
 
 ```
@@ -23,13 +23,15 @@ terraform init
 terraform apply
 ```
 
-## Ssh to vm
-
+## Connecting to a Cluster
 
 ```
-ssh tfps@<ip_from_tf_output>
+echo "$(terraform output kube_config | sed '1d' - | sed  '$ d' -)" > ./azurek8s
+export KUBECONFIG=./azurek8s
+➜ kubectl get nodes
+NAME                              STATUS   ROLES   AGE   VERSION
+aks-default-57704483-vmss000000   Ready    agent   16m   v1.26.6
 ```
-
 ## Cleanup
 
 ```
