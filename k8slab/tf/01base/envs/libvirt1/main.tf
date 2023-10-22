@@ -1,5 +1,5 @@
-module net {
+module "net" {
   source = "../../modules/nets-libvirt"
-  name  = "tfminikube"
+  name   = "tfminikube"
 }
 
