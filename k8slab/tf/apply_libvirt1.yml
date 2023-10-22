@@ -1,0 +1,19 @@
+---
+- name: apply libvirt terraforms
+  hosts: localhost
+
+  tasks:
+  - name: Apply 03k8splatform 
+    terraform:
+      project_path: 01base/envs/libvirt1
+      state: present
+      
+  - name: Apply 02k8s
+    terraform:
+      project_path: 02k8s/envs/libvirt1
+      state: present
+ 
+  - name: Apply 03k8splatform 
+    terraform:
+      project_path: 03k8splatform/envs/libvirt1
+      state: present
