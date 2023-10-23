@@ -1,4 +1,4 @@
-variable argo_enabled {
+variable "argo_enabled" {
   type        = bool
   default     = true
   description = "Should Argo Be Enabled."

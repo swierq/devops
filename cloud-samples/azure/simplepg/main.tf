@@ -48,12 +48,12 @@ resource "azurerm_postgresql_flexible_server" "tfpg" {
   location            = azurerm_resource_group.tfpg.location
   resource_group_name = azurerm_resource_group.tfpg.name
 
-  sku_name   = "B_Standard_B1ms"
-  version    = "15"
-  storage_mb = 32768
-  backup_retention_days  = 7
+  sku_name              = "B_Standard_B1ms"
+  version               = "15"
+  storage_mb            = 32768
+  backup_retention_days = 7
 
-  administrator_login         = var.login
+  administrator_login    = var.login
   administrator_password = var.password
 
   depends_on = [azurerm_private_dns_zone_virtual_network_link.tfpg]
@@ -64,8 +64,8 @@ resource "azurerm_postgresql_flexible_server" "tfpg" {
 }
 
 resource "azurerm_postgresql_flexible_server_database" "tfpg" {
-  name                = "${var.prefix}-db"
-  server_id         = azurerm_postgresql_flexible_server.tfpg.id
+  name      = "${var.prefix}-db"
+  server_id = azurerm_postgresql_flexible_server.tfpg.id
   collation = "en_US.utf8"
   charset   = "utf8"
 }

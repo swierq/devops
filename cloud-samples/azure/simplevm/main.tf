@@ -8,7 +8,7 @@
 resource "azurerm_resource_group" "tfps" {
   name     = "${var.prefix}-resources"
   location = "West Europe"
-  
+
 }
 
 resource "azurerm_ssh_public_key" "tfps" {
@@ -63,10 +63,10 @@ resource "azurerm_linux_virtual_machine" "main" {
   location              = azurerm_resource_group.tfps.location
   resource_group_name   = azurerm_resource_group.tfps.name
   network_interface_ids = [azurerm_network_interface.main.id]
-  size               = "Standard_F2"
-  
+  size                  = "Standard_F2"
 
-  admin_username = "tfps"  
+
+  admin_username = "tfps"
   admin_ssh_key {
     username   = "tfps"
     public_key = azurerm_ssh_public_key.tfps.public_key
@@ -79,8 +79,8 @@ resource "azurerm_linux_virtual_machine" "main" {
     sku       = "20_04-lts"
     version   = "latest"
   }
-  os_disk {    
-    caching              = "ReadWrite"     
+  os_disk {
+    caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
 
