@@ -1,0 +1,12 @@
+name: Check Terraform Formatting
+run-name: ${{ github.actor }} is Checking Terrform Formatting 🚀
+on: [push, pull_request]
+jobs:
+  Run-Terraform-Fmt-Check:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: Check out repository code
+        uses: actions/checkout@v4          
+      - name: Check Terraform Formatting
+        run: |
+          find . -name \*.tf -print0 | xargs -I{} -0 terraform fmt -check {}
