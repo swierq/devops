@@ -17,10 +17,11 @@ jobs:
         with:
           tflint_version: v0.48.0          
       - name: Check Terraform Linting
-        continue-on-error: true
+        continue-on-error: false
         run: |
           set +e
           TOPDIR=`pwd`
+          EXCODE=0
           while IFS= read -r f; do 
             TFDIR=$(dirname $f)
             cd $TFDIR
@@ -29,7 +30,9 @@ jobs:
             echo "==========================="
             tflint --init -c $TOPDIR/.tflint.hcl
             tflint
+            EXCODE=$(($EXCODE + $?))
             cd -
           done <<< $(find . -name main.tf -type f)
+          exit $EXCODE
           
           

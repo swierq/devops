@@ -1,7 +1,9 @@
 variable "prefix" {
+  type    = string
   default = "tfpg"
 }
 variable "login" {
+  type    = string
   default = "psqladmin"
 }
 variable "password" {
