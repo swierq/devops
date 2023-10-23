@@ -3,7 +3,7 @@
   hosts: localhost
 
   tasks:
-  - name: Apply 03k8splatform 
+  - name: Apply 01base 
     terraform:
       project_path: 01base/envs/libvirt1
       state: present
