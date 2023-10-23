@@ -7,13 +7,16 @@
     terraform:
       project_path: 01base/envs/libvirt1
       state: present
+      force_init: true
       
   - name: Apply 02k8s
     terraform:
       project_path: 02k8s/envs/libvirt1
       state: present
+      force_init: true
  
   - name: Apply 03k8splatform 
     terraform:
       project_path: 03k8splatform/envs/libvirt1
       state: present
+      force_init: true
