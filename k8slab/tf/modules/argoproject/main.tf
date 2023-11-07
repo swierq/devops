@@ -16,46 +16,25 @@ resource "kubernetes_manifest" "argo_project" {
           "kind"  = "*"
         },
       ]
-      #"description" = "Example Project"
       "description" = var.description
       "destinations" = [
         {
-          #"namespace" = "guestbook"
+
           "namespace" = var.namespace
           "server"    = "https://kubernetes.default.svc"
         },
+        {
+          "namespace" = "argocd"
+          "server"    = "https://kubernetes.default.svc"
+        },
       ]
-      # "namespaceResourceBlacklist" = [
-      #   {
-      #     "group" = ""
-      #     "kind"  = "ResourceQuota"
-      #   },
-      #   {
-      #     "group" = ""
-      #     "kind"  = "LimitRange"
-      #   },
-      #   {
-      #     "group" = ""
-      #     "kind"  = "NetworkPolicy"
-      #   },
-      # ]
+
       "namespaceResourceWhitelist" = [
-        # {
-        #   "group" = "apps"
-        #   "kind"  = "Deployment"
-        # },
-        # {
-        #   "group" = "apps"
-        #   "kind"  = "StatefulSet"
-        # },
         {
           "group" = "*"
           "kind"  = "*"
         },
       ]
-      # "orphanedResources" = {
-      #   "warn" = false
-      # }
       "roles" = [
         {
           "description" = format("Read-only privileges to %s", var.name)

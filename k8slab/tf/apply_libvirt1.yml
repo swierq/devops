@@ -20,3 +20,9 @@
       project_path: 03k8splatform/envs/libvirt1
       state: present
       force_init: true
+
+  - name: Apply 04userapps
+    terraform:
+      project_path: 04userapps/envs/libvirt1
+      state: present
+      force_init: true

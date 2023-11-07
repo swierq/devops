@@ -3,6 +3,11 @@
   hosts: localhost
 
   tasks:
+  - name: Destroy 04userapps
+    terraform:
+      project_path: 04userapps/envs/libvirt1
+      state: absent
+
   - name: Destroy 03k8splatform
     terraform:
       project_path: 03k8splatform/envs/libvirt1
@@ -16,7 +21,4 @@
   - name: Destroy 01base
     terraform:
       project_path: 01base/envs/libvirt1
-      state: absent
-      
-      
-      
+      state: absent           

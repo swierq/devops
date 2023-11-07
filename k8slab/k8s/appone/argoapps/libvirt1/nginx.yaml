@@ -11,6 +11,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: appone
   source:
-    path: k8slab/k8s/appone/argoapps/libvirt1
+    path: k8slab/k8s/appone/nginx/overlays/libvirt1
     repoURL: https://github.com/swierq/devops/
     targetRevision: master
