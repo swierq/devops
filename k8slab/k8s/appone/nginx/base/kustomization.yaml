@@ -4,3 +4,8 @@ kind: Kustomization
 commonLabels:
   app: appone
   component: nginx
+
+resources:
+- deployment.yaml
+- service.yaml
+- ingress.yaml
