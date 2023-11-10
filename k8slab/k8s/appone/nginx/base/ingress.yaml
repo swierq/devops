@@ -3,12 +3,12 @@ kind: Ingress
 metadata:
   name: nginx
   annotations:
-    
-spec:  
+
+spec:
   rules:
   - http:
       paths:
-      - path: /appone
+      - path: /
         pathType: Prefix
         backend:
           service:
