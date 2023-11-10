@@ -18,7 +18,8 @@ resource "aws_subnet" "public" {
   cidr_block        = format("10.%s.%s.0/24", var.vpc_octet, 10 * count.index)
 
   tags = merge(var.env_tags, {
-    Name = format("%s-%s", "Public", var.availability_zones[count.index])
+    Name                     = format("%s-%s", "Public", var.availability_zones[count.index])
+    "kubernetes.io/role/elb" = 1
   })
 }
 
@@ -29,7 +30,8 @@ resource "aws_subnet" "private" {
   cidr_block        = format("10.%d.%d.0/24", var.vpc_octet, 1 + (10 * count.index))
 
   tags = merge(var.env_tags, {
-    Name = format("%s-%s", "Private", var.availability_zones[count.index])
+    Name                              = format("%s-%s", "Private", var.availability_zones[count.index])
+    "kubernetes.io/role/internal-elb" = 1
   })
 }
 

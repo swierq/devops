@@ -1,6 +1,6 @@
 name: Check Terraform Linting
 run-name: ${{ github.actor }} is Checking Terrform Linting 🚀
-on: [push, pull_request]
+on: [push]
 jobs:
   Run-Terraform-Tf-Lint:
     runs-on: ubuntu-latest
