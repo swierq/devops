@@ -9,6 +9,10 @@ resources:
 
 patches:
 - target:
+    kind: Service
+    name: nginx
+  path: service-patch.yaml
+- target:
     kind: Ingress
     name: nginx
   path: ingress-patch.yaml
