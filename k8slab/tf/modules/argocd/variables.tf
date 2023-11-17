@@ -3,3 +3,12 @@ variable "argocd_namespace" {
   default     = "argocd"
   description = "Namesapace for ArgoCD."
 }
+
+variable "helm_variables" {
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default     = []
+  description = "Helm Chart Variables."
+}

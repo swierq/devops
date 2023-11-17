@@ -10,7 +10,13 @@ resource "helm_release" "argocd" {
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
   namespace  = resource.kubernetes_namespace.argocd.metadata[0].name
-  depends_on = [
-    kubernetes_namespace.argocd
-  ]
+
+  dynamic "set" {
+    for_each = var.helm_variables
+    content {
+      name  = set.value["name"]
+      value = set.value["value"]
+    }
+  }
+
 }

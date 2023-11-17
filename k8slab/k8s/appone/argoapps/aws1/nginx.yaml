@@ -14,3 +14,7 @@ spec:
     path: k8slab/k8s/appone/nginx/overlays/aws1
     repoURL: https://github.com/swierq/devops/
     targetRevision: master
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
