@@ -14,5 +14,15 @@ module "argocd" {
 
 module "prometheus" {
   count  = var.prometheus_enabled ? 1 : 0
-  source = "../../modules/prometheus"
+  source = "../../../modules/prometheus"
+  helm_variables = [
+    { name = "windowsMonitoring.enabled", value = "false" },
+    { name = "grafana.ingress.enabled", value = "true" },
+    { name = "grafana.ingress.ingressClassName", value = "nginx" },
+    { name = "grafana.ingress.path", value = "/" },
+    { name = "grafana.ingress.hosts[0]", value = "grafana.k8s.lab" },
+    { name = "grafana.ingress.annotations.nginx\\.ingress\\.kubernetes\\.io/rewrite-target", value = "/" },
+  ]
+
+
 }
