@@ -21,6 +21,15 @@ module "argo" {
 
 module "prometheus" {
   count  = var.prometheus_enabled ? 1 : 0
-  source = "../../modules/prometheus"
+  source = "../../../modules/prometheus"
+  helm_variables = [
+    { name = "windowsMonitoring.enabled", value = "false" },
+    { name = "grafana.service.type", value = "NodePort" },
+    { name = "grafana.ingress.enabled", value = "true" },
+    { name = "grafana.ingress.ingressClassName", value = "alb" },
+    { name = "grafana.ingress.path", value = "/" },
+    { name = "grafana.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/scheme", value = "internet-facing" },
+  ]
+  depends_on = [module.albingress]
 }
 
