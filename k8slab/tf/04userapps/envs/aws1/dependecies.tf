@@ -1,23 +1,33 @@
 #tflint-ignore: terraform_unused_declarations
 data "terraform_remote_state" "base" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../../../01base/envs/aws1/terraform.tfstate"
+    bucket         = "tfstate-prz"
+    key            = "states/aws1/01base.tfstate"
+    dynamodb_table = "tfstate-prz"
+    region         = "eu-west-1"
   }
 }
-
 
 data "terraform_remote_state" "k8s" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../../../02k8s/envs/aws1/terraform.tfstate"
+    bucket         = "tfstate-prz"
+    key            = "states/aws1/02k8s.tfstate"
+    dynamodb_table = "tfstate-prz"
+    region         = "eu-west-1"
   }
 }
+
 
 #tflint-ignore: terraform_unused_declarations
 data "terraform_remote_state" "k8splatform" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../../../03k8splatform/envs/aws1/terraform.tfstate"
+    bucket         = "tfstate-prz"
+    key            = "states/aws1/03k8splatform.tfstate"
+    dynamodb_table = "tfstate-prz"
+    region         = "eu-west-1"
   }
 }
+
