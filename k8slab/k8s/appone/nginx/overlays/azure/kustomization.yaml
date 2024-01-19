@@ -3,15 +3,11 @@ kind: Kustomization
 
 namespace: appone
 commonLabels:
-  env: aws1
+  env: azure
 resources:
   - ../../base
 
 patches:
-- target:
-    kind: Service
-    name: nginx
-  path: service-patch.yaml
 - target:
     kind: Ingress
     name: nginx
