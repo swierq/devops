@@ -5,9 +5,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
   dns_prefix          = format("%s-aks", var.prefix)
 
   default_node_pool {
-    name       = "default"
-    node_count = 1
-    vm_size    = "Standard_D2_v2"
+    name                = "default"
+    enable_auto_scaling = true
+    min_count           = 1
+    max_count           = 5
+    node_count          = 1
+    vm_size             = "Standard_D2_v2"
   }
 
   identity {
@@ -18,3 +21,16 @@ resource "azurerm_kubernetes_cluster" "aks" {
     Environment = var.prefix
   }
 }
+
+# resource "azurerm_kubernetes_cluster_node_pool" "userapps" {
+#   name                  = "userapps"
+#   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
+#   vm_size               = "Standard_DS2_v2"
+#   enable_auto_scaling   = true
+#   min_count             = 1
+#   max_count             = 5
+#   node_count            = 1
+#   node_labels = {
+#     dest = "userapps"
+#   }
+# }

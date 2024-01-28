@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadek
+  labels:
+    name: loadek
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    name: loadek
