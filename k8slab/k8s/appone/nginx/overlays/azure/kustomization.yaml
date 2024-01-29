@@ -12,3 +12,7 @@ patches:
     kind: Ingress
     name: nginx
   path: ingress-patch.yaml
+# - target:
+#     kind: Deployment
+#     name: nginx
+#   path: deployment-patch.yaml

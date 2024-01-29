@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadek
+spec:
+  selector:
+    matchLabels:
+      name: loadek
+  template:
+    metadata:
+      labels:
+        name: loadek
+    spec:
+      containers:
+      - name: loadek
+        image: swierq/golang:0.0.2
+        command: ["loadek"]
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "100m"
+          limits:
+            memory: "2Gi"
+            cpu: "200m"
