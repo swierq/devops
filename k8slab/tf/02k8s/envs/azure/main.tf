@@ -1,3 +1,65 @@
+resource "azurerm_log_analytics_workspace" "law" {
+  name                = format("%s-laworkspace", var.prefix)
+  location            = data.terraform_remote_state.base.outputs.resource_group_location
+  resource_group_name = data.terraform_remote_state.base.outputs.resource_group_name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+
+resource "azurerm_monitor_data_collection_rule" "rule" {
+  name                = format("%s-mdcr-aks", var.prefix)
+  location            = data.terraform_remote_state.base.outputs.resource_group_location
+  resource_group_name = data.terraform_remote_state.base.outputs.resource_group_name
+  kind                = "Linux"
+
+  destinations {
+    log_analytics {
+      name                  = "destination-log"
+      workspace_resource_id = azurerm_log_analytics_workspace.law.id
+    }
+  }
+
+  data_flow {
+    destinations = ["destination-log"]
+    streams      = ["Microsoft-ContainerInsights-Group-Default"]
+  }
+
+  data_sources {
+    extension {
+      extension_json = jsonencode({
+        dataCollectionSettings = {
+          enableContainerLogV2   = true
+          interval               = "1m"
+          namespaceFilteringMode = "Off"
+        }
+      })
+      extension_name = "ContainerInsights"
+      name           = "ContainerInsightsExtension"
+      streams        = ["Microsoft-ContainerInsights-Group-Default"]
+    }
+  }
+
+}
+
+resource "azurerm_log_analytics_solution" "las" {
+  solution_name         = "Containers"
+  workspace_resource_id = azurerm_log_analytics_workspace.law.id
+  workspace_name        = azurerm_log_analytics_workspace.law.name
+  location              = data.terraform_remote_state.base.outputs.resource_group_location
+  resource_group_name   = data.terraform_remote_state.base.outputs.resource_group_name
+
+  plan {
+    publisher = "Microsoft"
+    product   = "OMSGallery/Containers"
+  }
+}
+
+resource "azurerm_monitor_data_collection_rule_association" "ra" {
+  name                    = "${var.prefix}-dcra"
+  target_resource_id      = azurerm_kubernetes_cluster.aks.id
+  data_collection_rule_id = azurerm_monitor_data_collection_rule.rule.id
+}
+
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = format("%s-aks", var.prefix)
   location            = data.terraform_remote_state.base.outputs.resource_group_location
@@ -15,6 +77,11 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   identity {
     type = "SystemAssigned"
+  }
+
+  oms_agent {
+    log_analytics_workspace_id      = azurerm_log_analytics_workspace.law.id
+    msi_auth_for_monitoring_enabled = true
   }
 
   tags = {
