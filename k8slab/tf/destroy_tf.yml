@@ -3,22 +3,22 @@
   hosts: localhost
 
   tasks:
-  - name: Destroy 04userapps
+  - name: Destroy 30userapps
     terraform:
-      project_path: "04userapps/envs/{{ tfenv }}"
+      project_path: "30userapps/envs/{{ tfenv }}"
       state: absent
 
-  - name: Destroy 03k8splatform
+  - name: Destroy 20k8splatform
     terraform:
-      project_path: "03k8splatform/envs/{{ tfenv }}"
+      project_path: "20k8splatform/envs/{{ tfenv }}"
       state: absent
 
-  - name: Destroy 02k8s
+  - name: Destroy 10k8s
     terraform:
-      project_path: "02k8s/envs/{{ tfenv }}"
+      project_path: "10k8s/envs/{{ tfenv }}"
       state: absent
 
-  - name: Destroy 01base
+  - name: Destroy 00base
     terraform:
-      project_path: "01base/envs/{{ tfenv }}"
-      state: absent           
+      project_path: "00base/envs/{{ tfenv }}"
+      state: absent
