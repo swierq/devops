@@ -22,7 +22,7 @@ resource "kubernetes_manifest" "argo_app" {
       "source" = {
         "path"           = var.repo_path
         "repoURL"        = var.repo_url
-        "targetRevision" = "master"
+        "targetRevision" = var.target_revision
       }
       "syncPolicy" = {
         "automated" = {

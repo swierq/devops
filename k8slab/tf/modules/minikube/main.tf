@@ -4,4 +4,7 @@ resource "minikube_cluster" "this" {
   addons       = var.addons
   vm           = true
   kvm_network  = var.kvm_network
+  cpus         = var.cpus
+  memory       = var.memory
 }
+

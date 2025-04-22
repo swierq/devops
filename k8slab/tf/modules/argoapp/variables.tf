@@ -23,3 +23,9 @@ variable "repo_path" {
   type        = string
   description = "Repository Path."
 }
+
+variable "target_revision" {
+  type        = string
+  description = "Repository Target Revision."
+  default     = "master"
+}

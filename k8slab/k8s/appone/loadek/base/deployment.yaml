@@ -12,15 +12,14 @@ spec:
         name: loadek
     spec:
       containers:
-      - name: loadek
-        image: swierq/golang:0.0.2
-        command: ["loadek"]
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            memory: "2Gi"
-            cpu: "100m"
-          limits:
-            memory: "2Gi"
-            cpu: "200m"
+        - name: loadek
+          image: swierq/golang:v0.0.1
+          command: ["loadek", "-port", "8080", "-cpumi", "100", "-memmb", "150"]
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "200M"
+              cpu: "100m"
+            limits:
+              memory: "200M"
