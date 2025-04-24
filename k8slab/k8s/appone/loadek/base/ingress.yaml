@@ -8,11 +8,10 @@ spec:
   rules:
     - http:
         paths:
-          - path: /loadek
+          - path: /loadek(/|$)(.*)
             pathType: Prefix
             backend:
               service:
                 name: loadek
                 port:
                   number: 8080
-            path: /loadek(/|$)(.*)
