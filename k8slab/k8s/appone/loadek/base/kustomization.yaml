@@ -6,6 +6,7 @@ commonLabels:
   component: loadek
 
 resources:
-- deployment.yaml
-- service.yaml
-- hpa.yaml
+  - deployment.yaml
+  - service.yaml
+  - hpa.yaml
+  - ingress.yaml

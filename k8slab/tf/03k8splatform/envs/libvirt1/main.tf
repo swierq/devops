@@ -9,6 +9,7 @@ module "argocd" {
     { name = "server.ingress.ingressClassName", value = "nginx" },
     { name = "server.ingress.pathType", value = "Prefix" },
     { name = "server.ingress.paths[0]", value = "/argocd" },
+    { name = "server.ingress.hostname", value = "argocd.k8s.lab.test" },
   ]
 }
 
@@ -20,9 +21,8 @@ module "prometheus" {
     { name = "grafana.ingress.enabled", value = "true" },
     { name = "grafana.ingress.ingressClassName", value = "nginx" },
     { name = "grafana.ingress.path", value = "/" },
-    { name = "grafana.ingress.hosts[0]", value = "grafana.k8s.lab" },
+    { name = "grafana.ingress.hosts[0]", value = "grafana.k8s.lab.test" },
     { name = "grafana.ingress.annotations.nginx\\.ingress\\.kubernetes\\.io/rewrite-target", value = "/" },
   ]
-
-
 }
+

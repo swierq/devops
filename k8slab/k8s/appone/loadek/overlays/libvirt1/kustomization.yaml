@@ -6,3 +6,9 @@ commonLabels:
   env: libvirt1
 resources:
   - ../../base
+
+patches:
+  - target:
+      kind: Ingress
+      name: nginx
+    path: ingress-patch.yaml

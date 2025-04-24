@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: loadek
+  annotations:
+
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /loadek
+            pathType: Prefix
+            backend:
+              service:
+                name: loadek
+                port:
+                  number: 8080
