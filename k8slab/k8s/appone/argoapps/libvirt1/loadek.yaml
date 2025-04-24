@@ -13,7 +13,7 @@ spec:
   source:
     path: k8slab/k8s/appone/loadek/overlays/libvirt1
     repoURL: https://github.com/swierq/devops/
-    targetRevision: feature/strimzi
+    targetRevision: master
   syncPolicy:
     automated:
       selfHeal: true
