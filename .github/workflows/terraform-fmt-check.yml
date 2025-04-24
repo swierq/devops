@@ -7,9 +7,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Check Terraform Formatting
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.1.7"
+      - name: Check Terraform Formatting
         run: |
           find . -name \*.tf -print0 | xargs -I{} -0 terraform fmt -check {}

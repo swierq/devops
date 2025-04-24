@@ -8,7 +8,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /loadek(/|$)(.*)
+          - path: /loadek
             pathType: Prefix
             backend:
               service:
