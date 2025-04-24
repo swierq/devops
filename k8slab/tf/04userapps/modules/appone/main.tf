@@ -23,5 +23,5 @@ module "appone_app" {
   namespace       = resource.kubernetes_namespace.appone.metadata[0].name
   repo_url        = "https://github.com/swierq/devops/"
   repo_path       = format("k8slab/k8s/appone/argoapps/%s", var.apps_env)
-  target_revision = "feature/strimzi"
+  target_revision = "master"
 }
