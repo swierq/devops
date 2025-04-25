@@ -6,5 +6,8 @@ resource "minikube_cluster" "this" {
   kvm_network  = var.kvm_network
   cpus         = var.cpus
   memory       = var.memory
+  extra_config = [
+    "kubelet.housekeeping-interval=10s"
+  ]
 }
 

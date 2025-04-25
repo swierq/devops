@@ -9,3 +9,9 @@ variable "prometheus_enabled" {
   default     = true
   description = "Should Prometheus Be Enabled."
 }
+
+variable "strimzi_enabled" {
+  type        = bool
+  default     = true
+  description = "Should Prometheus Be Enabled."
+}
