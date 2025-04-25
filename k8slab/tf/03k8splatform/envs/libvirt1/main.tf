@@ -26,3 +26,7 @@ module "prometheus" {
   ]
 }
 
+module "strimzi" {
+  count  = var.strimzi_enabled ? 1 : 0
+  source = "../../../modules/strimzi"
+}

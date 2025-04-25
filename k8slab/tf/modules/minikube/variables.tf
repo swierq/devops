@@ -15,7 +15,9 @@ variable "addons" {
   default = ["dashboard",
     "default-storageclass",
     "ingress",
-  "storage-provisioner"]
+    "storage-provisioner",
+    "metrics-server",
+  ]
 
   description = "description"
 }
