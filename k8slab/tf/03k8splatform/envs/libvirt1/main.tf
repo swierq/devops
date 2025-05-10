@@ -29,4 +29,8 @@ module "prometheus" {
 module "strimzi" {
   count  = var.strimzi_enabled ? 1 : 0
   source = "../../../modules/strimzi"
+  helm_variables = [
+    { name = "watchNamespaces[0]", value = "appkafka" },
+  ]
+
 }
