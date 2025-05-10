@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: argocd
+    server: "https://kubernetes.default.svc"
+  project: appkafka
+  source:
+    path: k8slab/k8s/appkafka/kafka/overlays/libvirt1
+    repoURL: https://github.com/swierq/devops/
+    targetRevision: master
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
