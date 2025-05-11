@@ -1,4 +1,4 @@
-iapiVersion: kafka.strimzi.io/v1beta2
+apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
   name: appkafka-topic
