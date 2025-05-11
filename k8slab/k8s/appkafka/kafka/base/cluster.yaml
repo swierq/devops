@@ -37,14 +37,12 @@ spec:
         - id: 0
           type: persistent-claim
           size: 2Gi
-          class: manual
           deleteClaim: false
   zookeeper:
     replicas: 1
     storage:
       type: persistent-claim
       size: 2Gi
-      class: manual
       deleteClaim: false
   entityOperator:
     topicOperator: {}
