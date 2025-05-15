@@ -26,6 +26,15 @@ module "prometheus" {
   ]
 }
 
+resource "kubernetes_namespace" "appkafka" {
+  metadata {
+    labels = {
+      app = "appkafka"
+    }
+    name = "appkafka"
+  }
+}
+
 module "strimzi" {
   count  = var.strimzi_enabled ? 1 : 0
   source = "../../../modules/strimzi"
